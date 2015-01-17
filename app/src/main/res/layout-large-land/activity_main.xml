@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:divider="?android:attr/dividerVertical"
+    android:weightSum="1">
+
+    <fragment
+
+            class="fr.ecp.sio.superchat.UsersFragment"
+            android:id="@+id/users_list"
+            android:layout_width="255dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/users_fragment"
+        />
+
+    <FrameLayout
+            android:id="@+id/tweets_content"
+            android:layout_width="360dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/users_list"
+        />
+    <TextView
+        android:id="@+id/tweets_Title_follower"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Follower"
+        android:layout_toRightOf="@id/tweets_content"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:padding="@dimen/padding2"
+
+
+
+        />
+    <RelativeLayout
+
+            android:id="@+id/tweets_follower"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_toRightOf="@id/tweets_content"
+            android:layout_below="@+id/tweets_Title_follower"
+
+        />
+    <TextView
+        android:id="@+id/tweets_Title_following"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Following"
+        android:padding="@dimen/padding2"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/tweets_content"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/tweets_follower"
+
+
+        />
+    <RelativeLayout
+        android:id="@+id/tweets_following"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_toRightOf="@id/tweets_content"
+
+        android:layout_below="@id/tweets_Title_following"
+
+        />
+    </RelativeLayout>

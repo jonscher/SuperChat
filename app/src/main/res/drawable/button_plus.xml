@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <size android:height="24dp" android:width="24dp" />
+            <corners android:radius="4dp" />
+
+            <solid android:color="@color/super_chat_dark" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <size android:height="24dp" android:width="24dp" />
+            <corners android:radius="4dp" />
+
+            <solid android:color="@color/super_chat" />
+        </shape>
+    </item>
+</selector>
