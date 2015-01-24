@@ -1,5 +1,6 @@
 package fr.ecp.sio.superchat;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -39,7 +40,7 @@ public class PostActivity extends ActionBarActivity {
                     String content = params[0];
                     String handle = AccountManager.getUserHandle(PostActivity.this);
                     String token = AccountManager.getUserToken(PostActivity.this);
-                    System.out.println("TOKKKKEN " + token);
+                    System.out.println("TOKEN " + token);
                     new ApiClient().postTweet(handle, token, content);
                     return true;
                 } catch (IOException e) {
@@ -52,6 +53,7 @@ public class PostActivity extends ActionBarActivity {
             protected void onPostExecute(Boolean success) {
                 if (success) {
                     finish();
+
                     Toast.makeText(PostActivity.this, R.string.post_success, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(PostActivity.this, R.string.post_error, Toast.LENGTH_SHORT).show();
@@ -60,4 +62,5 @@ public class PostActivity extends ActionBarActivity {
 
         }.execute(content);
     }
+
 }

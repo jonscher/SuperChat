@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,20 +26,23 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
 
     private static final int LOADER_USERS = 1000;
     private static final int REQUEST_LOGIN_FOR_POST = 1;
-
-    private UsersAdapter mListAdapter;
+    public static User user;
+    private UsersAdapteur mListAdapter;
     private boolean mIsMasterDetailsMode;
 
+    private boolean isConnected;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        isConnected = AccountManager.isConnected(getActivity());
         return inflater.inflate(R.layout.users_fragment, container, false);
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapter(getActivity());
+        mListAdapter = new UsersAdapteur();
         setListAdapter(mListAdapter);
         view.findViewById(R.id.post).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +50,6 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
                 post();
             }
         });
-
     }
 
     @Override
@@ -62,76 +65,76 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     public void onStart() {
         super.onStart();
         getLoaderManager().initLoader(LOADER_USERS, null, this);
+        Log.i(UsersFragment.class.getName(), "ok1");
     }
 
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {
+        Log.i(UsersFragment.class.getName(), "ok2");
         return new UsersLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<List<User>> loader, List<User> users) {
         mListAdapter.setUsers(users);
+        Log.i(UsersFragment.class.getName(), "ok3");
     }
 
     @Override
-    public void onLoaderReset(Loader<List<User>> loader) { }
+    public void onLoaderReset(Loader<List<User>> loader) {
+    }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        User user = mListAdapter.getItem(position);
+        user = mListAdapter.getItem(position);
         if (mIsMasterDetailsMode) {
             Fragment tweetsFragment = new TweetsFragment();
-            Fragment followerFragment = new FollowerFragment();
-            Fragment followingFragment = new FollowingFragment();
-
+            Fragment followFragment = new FollowingFragment();
+            Log.i(UsersFragment.class.getName(), "user: " + user);
             tweetsFragment.setArguments(TweetsFragment.newArguments(user));
-            followerFragment.setArguments(FollowerFragment.newArgument(user));
-            followingFragment.setArguments(FollowingFragment.newArgument(user));
+            followFragment.setArguments(FollowingFragment.newArgument(user));
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.tweets_content, tweetsFragment)
-                    .replace(R.id.tweets_follower, followerFragment)
-                    .replace(R.id.tweets_following, followingFragment)
+                    .replace(R.id.tweets_follower, followFragment)
                     .commit();
         } else {
 
-            Intent intent = new Intent(getActivity(), TweetsActivity.class);
+            Intent intent = new Intent(getActivity(), TabHostActivity.class);
             intent.putExtras(TweetsFragment.newArguments(user));
             startActivity(intent);
-          }
+        }
     }
 
     private void post() {
         if (AccountManager.isConnected(getActivity())) {
             startActivity(new Intent(getActivity(), PostActivity.class));
-        }
-        else {
+        } else {
             LoginFragment fragment = new LoginFragment();
             fragment.setTargetFragment(this, REQUEST_LOGIN_FOR_POST);
             fragment.show(getFragmentManager(), "login_dialog");
+            Log.i(getActivity().getClass().getName().toString(), "je suis ds cette act1");
         }
     }
-
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOGIN_FOR_POST && resultCode == PostActivity.RESULT_OK) {
-            post();
+post();
+          //  startActivity(new Intent(getActivity(), PostActivity.class));
+
+
+            //        getListView().invalidate();
         }
     }
 
-    private void add_follower() {
-        if (AccountManager.isConnected(getActivity())) {
-            startActivity(new Intent(getActivity(), PostActivity.class));
-        } else {
-            LoginFragment fragment = new LoginFragment();
-            fragment.setTargetFragment(this, REQUEST_LOGIN_FOR_POST);
-            fragment.show(getFragmentManager(), "login_dialog");
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(AccountManager.isConnected(getActivity()) != isConnected){
+            isConnected = AccountManager.isConnected(getActivity());
+            getView().invalidate();
         }
     }
-
 }

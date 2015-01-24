@@ -41,7 +41,7 @@ public class UsersLoader extends AsyncTaskLoader<List<User>> {
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        if (mResult != null){
+        if (mResult != null) {
             deliverResult(mResult);
         }
         if (takeContentChanged() || mResult == null) {
@@ -58,6 +58,8 @@ public class UsersLoader extends AsyncTaskLoader<List<User>> {
     @Override
     public void deliverResult(List<User> data) {
         mResult = data;
+        Log.i(UsersLoader.class.getName(), "data Userloaders: " + data);
+
         super.deliverResult(data);
     }
 

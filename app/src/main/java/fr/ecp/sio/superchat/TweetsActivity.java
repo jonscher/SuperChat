@@ -11,6 +11,8 @@ import android.view.View;
  */
 public class TweetsActivity extends ActionBarActivity {
 
+    public static int FOLLOW_ACTIVITY;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,27 +30,16 @@ public class TweetsActivity extends ActionBarActivity {
 
     public void button_follower(View view) {
 
-      /*  Fragment followingFragment = new FollowingFragment();
-        followingFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.content, followingFragment)
-                .commit();*/
-
-            Intent intent1 = new Intent(this, FollowerActivity.class);
-            intent1.putExtras(getIntent().getExtras());
-            startActivity(intent1);
+        FOLLOW_ACTIVITY = 0;
+        Intent intent1 = new Intent(this, FollowActivity.class);
+        intent1.putExtras(getIntent().getExtras());
+        startActivity(intent1);
     }
 
-     public void button_following(View view) {
-      /*  Fragment followingFragment = new FollowingFragment();
-        followingFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.content, followingFragment)
-                .commit();*/
+    public void button_following(View view) {
 
-        Intent intent2 = new Intent(this, FollowingActivity.class);
+        FOLLOW_ACTIVITY = 1;
+        Intent intent2 = new Intent(this, FollowActivity.class);
         intent2.putExtras(getIntent().getExtras());
         startActivity(intent2);
     }

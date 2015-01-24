@@ -35,7 +35,7 @@ public class TweetsLoader extends AsyncTaskLoader<List<Tweet>> {
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        if (mResult != null){
+        if (mResult != null) {
             deliverResult(mResult);
         }
         if (takeContentChanged() || mResult == null) {

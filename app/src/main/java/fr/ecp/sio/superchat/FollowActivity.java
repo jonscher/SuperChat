@@ -7,7 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 /**
  * Created by jonathan on 03/01/2015.
  */
-public class FollowerActivity extends ActionBarActivity {
+public class FollowActivity extends ActionBarActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -15,11 +15,12 @@ public class FollowerActivity extends ActionBarActivity {
         setContentView(R.layout.follow_activity);
 
         if (savedInstanceState == null) {
-            Fragment followerFragment = new FollowerFragment();
-            followerFragment.setArguments(getIntent().getExtras());
+
+            Fragment followFragment = new FollowingFragment();
+            followFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.content,followerFragment)
+                    .add(R.id.content, followFragment)
                     .commit();
 
         }

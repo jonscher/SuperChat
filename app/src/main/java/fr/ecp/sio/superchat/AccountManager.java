@@ -1,6 +1,7 @@
 package fr.ecp.sio.superchat;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -43,6 +44,10 @@ public class AccountManager {
                 .remove(PREF_API_TOKEN)
                 .remove(PREF_API_HANDLE)
                 .apply();
+        }
+
+
     }
 
-}
+
+

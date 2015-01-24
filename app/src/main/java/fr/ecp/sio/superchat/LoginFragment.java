@@ -1,6 +1,5 @@
 package fr.ecp.sio.superchat;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -86,19 +85,23 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
 
             @Override
             protected void onPostExecute(String token) {
+
                 if (token != null) {
+                    AccountManager.login(getActivity(), token, handle);
+
                     Fragment target = getTargetFragment();
                     if (target != null) {
-                        target.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, null);
+                        target.onActivityResult(getTargetRequestCode(), FollowActivity.RESULT_OK, null);
+                        Log.i(getActivity().getClass().getName(), "c l'activité");
                     }
-                    AccountManager.login(getActivity(), token, handle);
                     dismiss();
+                    ((MainActivity) getActivity()).ListChanged();
+
                     Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), R.string.login_error, Toast.LENGTH_SHORT).show();
                 }
             }
-
         }.execute(handle, password);
     }
 }

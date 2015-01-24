@@ -17,16 +17,17 @@ public class FollowingsLoader extends AsyncTaskLoader<List<User>> {
     private List<User> mResult;
     private String mHandle;
 
-    public FollowingsLoader(Context context, String Handle)  {
+    public FollowingsLoader(Context context, String Handle) {
         super(context);
         mHandle = Handle;
     }
 
     @Override
     public List<User> loadInBackground() {
-        try{
+
+        try {
             return new ApiClient().getUserFollowing(mHandle);
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e(FollowingsLoader.class.getName(), "Failed to download Followings", e);
             return null;
         }
@@ -35,7 +36,7 @@ public class FollowingsLoader extends AsyncTaskLoader<List<User>> {
     @Override
     protected void onStartLoading() {
         super.onStartLoading();
-        if (mResult != null){
+        if (mResult != null) {
             deliverResult(mResult);
         }
         if (takeContentChanged() || mResult == null) {

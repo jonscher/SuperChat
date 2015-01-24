@@ -11,6 +11,7 @@ public class User implements Parcelable {
     private String _id;
     private String handle;
     private String status;
+    private boolean followings;
     private String profilePicture;
 
     public String getId() {
@@ -46,7 +47,9 @@ public class User implements Parcelable {
     }
 
     @Override
-    public int describeContents() { return 0; }
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -75,4 +78,11 @@ public class User implements Parcelable {
 
     };
 
+    public boolean isFollowings() {
+        return followings;
+    }
+
+    public void setFollowings(boolean followings) {
+        this.followings = followings;
+    }
 }

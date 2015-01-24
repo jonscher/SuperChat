@@ -21,7 +21,8 @@ import fr.ecp.sio.superchat.model.User;
  * Created by Michaël on 12/12/2014.
  */
 public class ApiClient {
-
+    // private static final String API_BASE = "http://vps130778.ovh.net:5666/mongo/";
+    // private static final String API_BASE = "http://10.0.2.2:5660/mongo/";
     private static final String API_BASE = "http://hackndo.com:5667/mongo/";
 
     public String login(String handle, String password) throws IOException {
@@ -32,7 +33,7 @@ public class ApiClient {
         Log.i(ApiClient.class.getName(), "Login: " + url);
         InputStream stream = new URL(url).openStream();
         String token = IOUtils.toString(stream);
-        Log.i(ApiClient.class.getName(), "resultat login: " +token);
+        Log.i(ApiClient.class.getName(), "resultat login: " + token);
         return token;
     }
 
@@ -64,7 +65,7 @@ public class ApiClient {
         String url = Uri.parse(API_BASE + handle + "/tweets/post/").buildUpon()
                 .appendQueryParameter("content", content)
                 .build().toString();
-        Log.i(ApiClient.class.getName(), "Ad tweet: " + url +" token :" +token + " handle:"+ handle);
+        Log.i(ApiClient.class.getName(), "Ad tweet: " + url + " token :" + token + " handle:" + handle);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("Authorization", "Bearer-" + token);
         connection.getInputStream();
@@ -74,17 +75,28 @@ public class ApiClient {
         String url = Uri.parse(API_BASE + handle + "/followings/post/").buildUpon()
                 .appendQueryParameter("handle", content)
                 .build().toString();
-        Log.i(ApiClient.class.getName(), "postaddfollowing: " + url +" token :" +token + " handle:"+ handle + "following:"+ content);
+        Log.i(ApiClient.class.getName(), "postaddfollowing: " + url + " token :" + token + " handle:" + handle + "following:" + content);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("Authorization", "Bearer-" + token);
-        connection.getInputStream();    }
+        connection.getInputStream();
+    }
 
     public void postRemoveFollowing(String handle, String token, String content) throws IOException {
         String url = Uri.parse(API_BASE + handle + "/followings/delete/").buildUpon()
                 .appendQueryParameter("handle", content)
                 .build().toString();
-        Log.i(ApiClient.class.getName(), "postRemovefollowing: " + url +" token :" +token + " handle:"+ handle + "followingdeleted:"+ content);
+        Log.i(ApiClient.class.getName(), "postRemovefollowing: " + url + " token :" + token + " handle:" + handle + "followingdeleted:" + content);
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
         connection.setRequestProperty("Authorization", "Bearer-" + token);
-        connection.getInputStream();    }
+        connection.getInputStream();
+    }
+    public List<User> getUserstoken(String token) throws IOException {
+        String url = Uri.parse(API_BASE + "users/").buildUpon()
+                .build().toString();
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Authorization", "Bearer-" + token);
+        InputStream stream = connection.getInputStream();
+        String response = IOUtils.toString(stream);
+        return Arrays.asList(new Gson().fromJson(response, User[].class));
+    }
 }

@@ -38,10 +38,9 @@ public class TweetsAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        if(getItem(position).getId() == null){
+        if (getItem(position).getId() == null) {
             return 0;
-        }
-        else {
+        } else {
             return getItem(position).getId().hashCode();
         }
     }

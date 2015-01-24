@@ -24,7 +24,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="4dp"
-            android:textAppearance="?android:textAppearanceMedium" />
+            android:textAppearance="?android:textAppearanceMedium"
+        />
 
     <TextView
             android:id="@+id/status"
@@ -33,31 +34,33 @@
             android:layout_toRightOf="@id/profile_picture"
             android:layout_toEndOf="@id/profile_picture"
             android:layout_below="@id/handle"
-            android:textAppearance="?android:textAppearanceSmall" />
+            android:textAppearance="?android:textAppearanceSmall"
+
+        />
 
 
     <ImageButton
-        android:id="@+id/add_follower"
+        android:id="@+id/add_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/padding"
         android:background="@drawable/button_plus"
         android:layout_toRightOf="@id/status"
-
         android:src="@drawable/ic_add_white_36dp"
+        android:visibility="visible"
         />
 
     <ImageButton
-        android:id="@+id/rem_follower"
+        android:id="@+id/rem_following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="@dimen/padding"
         android:background="@drawable/button_moins"
-        android:layout_toRightOf="@id/add_follower"
+        android:layout_toRightOf="@id/add_following"
         android:src="@drawable/ic_remove_white_36dp"
-
+        android:visibility="visible"
         />
 
 
