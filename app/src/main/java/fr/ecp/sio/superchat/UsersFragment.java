@@ -109,6 +109,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     private void post() {
         if (AccountManager.isConnected(getActivity())) {
             startActivity(new Intent(getActivity(), PostActivity.class));
+
         } else {
             LoginFragment fragment = new LoginFragment();
             fragment.setTargetFragment(this, REQUEST_LOGIN_FOR_POST);
@@ -121,8 +122,11 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOGIN_FOR_POST && resultCode == PostActivity.RESULT_OK) {
-post();
-          //  startActivity(new Intent(getActivity(), PostActivity.class));
+            ((MainActivity) getActivity()).ListChanged();
+
+            post();
+
+            //  startActivity(new Intent(getActivity(), PostActivity.class));
 
 
             //        getListView().invalidate();
@@ -134,7 +138,6 @@ post();
         super.onResume();
         if(AccountManager.isConnected(getActivity()) != isConnected){
             isConnected = AccountManager.isConnected(getActivity());
-            getView().invalidate();
         }
     }
 }

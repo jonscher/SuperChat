@@ -67,6 +67,7 @@ public class MainActivity extends ActionBarActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             AccountManager.logout(MainActivity.this);
+                            ListChanged();
                         }
                     })
                     .setNegativeButton(android.R.string.no, null)

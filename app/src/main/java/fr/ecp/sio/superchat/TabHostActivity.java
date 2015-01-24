@@ -182,4 +182,11 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
             //        getListView().invalidate();
         }
     }
+    public void ListChanged() {
+        Fragment followfragments = new FollowingFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content, followfragments)
+                .commit();
+    }
 }

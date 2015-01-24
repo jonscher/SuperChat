@@ -125,6 +125,7 @@ public class UsersAdapteur extends BaseAdapter implements DialogInterface.OnShow
                             if (success == 1) {
                                 Toast.makeText(parent.getContext(), "Vous suivez " + user.getHandle(), Toast.LENGTH_SHORT).show();
                                 if (parent.getContext().getClass().getName().compareTo(FollowActivity.class.getName()) == 0) {
+
                                 }
                             } else if (success == 2) {
                                 Toast toast = Toast.makeText(parent.getContext(), "Vous ne pouvez pas vous suivre. Choisissez un autre utilisateur à suivre", Toast.LENGTH_SHORT);
