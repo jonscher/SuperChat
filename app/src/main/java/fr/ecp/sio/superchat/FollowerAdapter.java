@@ -51,7 +51,7 @@ public class FollowerAdapter extends BaseAdapter implements DialogInterface.OnSh
     public User getItem(int position) {
         return mUsers.get(position);
     }
-bb
+
 
     @Override
     public long getItemId(int position) {
