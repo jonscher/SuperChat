@@ -43,6 +43,16 @@ public class ApiClient {
         return Arrays.asList(new Gson().fromJson(response, User[].class));
     }
 
+    public List<User> getUsersConnected(String token) throws IOException {
+        String url = Uri.parse(API_BASE + "users/").buildUpon()
+                .build().toString();
+        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
+        connection.setRequestProperty("Authorization", "Bearer-" + token);
+        InputStream stream = connection.getInputStream();
+        String response = IOUtils.toString(stream);
+        return Arrays.asList(new Gson().fromJson(response, User[].class));
+    }
+
     public List<Tweet> getUserTweets(String handle) throws IOException {
         InputStream stream = new URL(API_BASE + handle + "/tweets/").openStream();
         String response = IOUtils.toString(stream);
@@ -90,13 +100,5 @@ public class ApiClient {
         connection.setRequestProperty("Authorization", "Bearer-" + token);
         connection.getInputStream();
     }
-    public List<User> getUserstoken(String token) throws IOException {
-        String url = Uri.parse(API_BASE + "users/").buildUpon()
-                .build().toString();
-        HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-        connection.setRequestProperty("Authorization", "Bearer-" + token);
-        InputStream stream = connection.getInputStream();
-        String response = IOUtils.toString(stream);
-        return Arrays.asList(new Gson().fromJson(response, User[].class));
-    }
+
 }

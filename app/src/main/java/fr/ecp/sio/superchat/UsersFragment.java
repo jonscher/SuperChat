@@ -18,6 +18,7 @@ import java.util.List;
 
 import fr.ecp.sio.superchat.loaders.UsersLoader;
 import fr.ecp.sio.superchat.model.User;
+import fr.ecp.sio.superchat.tabHost.TabHostActivity;
 
 /**
  * Created by Michaël on 05/12/2014.
@@ -27,7 +28,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     private static final int LOADER_USERS = 1000;
     private static final int REQUEST_LOGIN_FOR_POST = 1;
     public static User user;
-    private UsersAdapteur mListAdapter;
+    private UsersAdapter mListAdapter;
     private boolean mIsMasterDetailsMode;
 
     private boolean isConnected;
@@ -42,7 +43,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapteur();
+        mListAdapter = new UsersAdapter();
         setListAdapter(mListAdapter);
         view.findViewById(R.id.post).setOnClickListener(new View.OnClickListener() {
             @Override

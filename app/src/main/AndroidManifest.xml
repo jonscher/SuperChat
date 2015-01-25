@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TabHostActivity" />
+        <activity android:name=".tabHost.TabHostActivity" />
 
         <activity android:name=".TweetsActivity" />
 

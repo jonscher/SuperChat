@@ -2,6 +2,9 @@ package fr.ecp.sio.superchat.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
+import fr.ecp.sio.superchat.AccountManager;
 
 /**
  * Created by Michaël on 05/12/2014.
@@ -12,6 +15,7 @@ public class User implements Parcelable {
     private String handle;
     private String status;
     private boolean followings;
+    private boolean following;
     private String profilePicture;
 
     public String getId() {
@@ -20,6 +24,15 @@ public class User implements Parcelable {
 
     public void setId(String id) {
         this._id = id;
+    }
+
+    public boolean isFollowing() {
+        Log.i(User.class.getName().toString(), following + getHandle() + "  c'est following");
+        return following;
+    }
+
+    public void setFollowing(boolean following) {
+        this.following = following;
     }
 
     public String getHandle() {

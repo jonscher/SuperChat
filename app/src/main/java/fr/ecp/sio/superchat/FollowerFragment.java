@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.ecp.sio.superchat.loaders.FollowersLoader;
 import fr.ecp.sio.superchat.model.User;
+import fr.ecp.sio.superchat.tabHost.TabHostActivity;
 
 /**
  * Created by jonathan on 04/01/2015.
@@ -61,7 +62,6 @@ public class FollowerFragment extends ListFragment implements LoaderManager.Load
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {
         return new FollowersLoader(getActivity(), mUser.getHandle());
-
     }
 
     @Override

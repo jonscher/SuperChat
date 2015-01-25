@@ -11,6 +11,7 @@ import java.util.List;
 
 import fr.ecp.sio.superchat.loaders.FollowingsLoader;
 import fr.ecp.sio.superchat.model.User;
+import fr.ecp.sio.superchat.tabHost.TabHostActivity;
 
 /**
  * Created by jonathan on 04/01/2015.
@@ -23,7 +24,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
 
     private User mUser;
 
-    public static UsersAdapteur mListAdapter;
+    public static UsersAdapter mListAdapter;
 
     public static Bundle newArgument(User user) {
         Bundle args = new Bundle();
@@ -40,7 +41,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapteur();
+        mListAdapter = new UsersAdapter();
         getListView().setDividerHeight(0);
     }
 
