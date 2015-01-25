@@ -67,9 +67,14 @@ public class UsersAdapter extends BaseAdapter {
         ImageView profilePictureView = (ImageView) convertView.findViewById(R.id.profile_picture);
         Picasso.with(convertView.getContext()).load(user.getProfilePicture()).into(profilePictureView);
 
+
+        final ImageButton button_delete = (ImageButton) convertView.findViewById(R.id.rem_following);
+        final ImageButton button_add = (ImageButton) convertView.findViewById(R.id.add_following);
+
         if (user.isFollowing()){
-          convertView.findViewById(R.id.rem_following).setVisibility(View.GONE);
+          button_delete.setVisibility(View.GONE);
         }
+
 
         return convertView;
     }
