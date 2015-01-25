@@ -91,7 +91,7 @@ public class ApiClient {
         connection.getInputStream();
     }
 
-    public void postRemoveFollowing(String handle, String token, String content) throws IOException {
+    public void postDeleteFollowing(String handle, String token, String content) throws IOException {
         String url = Uri.parse(API_BASE + handle + "/followings/delete/").buildUpon()
                 .appendQueryParameter("handle", content)
                 .build().toString();

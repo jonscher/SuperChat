@@ -170,7 +170,8 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
 
         mTabHost.setOnTabChangedListener(this);
     }
-    public void lanchActivity(){
+
+    public void lanchActivity() {
         Fragment followFragment = new UsersFragment();
         getSupportFragmentManager()
                 .beginTransaction()
@@ -188,6 +189,7 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
             //        getListView().invalidate();
         }
     }
+
     public void ListChanged() {
         Fragment followfragments = new FollowingFragment();
         getSupportFragmentManager()
