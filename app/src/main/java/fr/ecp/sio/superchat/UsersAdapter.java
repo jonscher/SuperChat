@@ -27,8 +27,7 @@ public class UsersAdapter extends BaseAdapter {
 
     public void setUsers(List<User> users) {
         mUsers = users;
-        notifyDataSetChanged();
-    }
+            }
 
     @Override
     public int getCount() {
