@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.tabHost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +17,14 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 
-import fr.ecp.sio.superchat.tabHost.MyPageAdapter;
-import fr.ecp.sio.superchat.tabHost.MyTabFactory;
+import fr.ecp.sio.superchat.AccountManager;
+import fr.ecp.sio.superchat.FollowerFragment;
+import fr.ecp.sio.superchat.FollowingFragment;
+import fr.ecp.sio.superchat.LoginFragment;
+import fr.ecp.sio.superchat.R;
+import fr.ecp.sio.superchat.SettingsActivity;
+import fr.ecp.sio.superchat.TweetsFragment;
+import fr.ecp.sio.superchat.UsersFragment;
 
 public class TabHostActivity extends ActionBarActivity implements OnTabChangeListener, OnPageChangeListener {
 
