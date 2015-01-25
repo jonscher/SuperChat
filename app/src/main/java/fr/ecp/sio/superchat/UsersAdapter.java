@@ -67,7 +67,9 @@ public class UsersAdapter extends BaseAdapter {
         ImageView profilePictureView = (ImageView) convertView.findViewById(R.id.profile_picture);
         Picasso.with(convertView.getContext()).load(user.getProfilePicture()).into(profilePictureView);
 
-
+        if (user.isFollowing()){
+          convertView.findViewById(R.id.rem_following).setVisibility(View.GONE);
+        }
 
         return convertView;
     }

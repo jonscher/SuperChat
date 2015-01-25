@@ -41,6 +41,7 @@
 
     <ImageButton
         android:id="@+id/add_following"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding"
@@ -48,11 +49,11 @@
         android:layout_toEndOf="@id/status"
         android:layout_toRightOf="@+id/status"
         android:src="@drawable/ic_add_white_36dp"
-        android:visibility="visible"
         />
 
     <ImageButton
         android:id="@+id/rem_following"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding"
@@ -60,7 +61,6 @@
         android:layout_toEndOf="@id/status"
         android:layout_toRightOf="@+id/status"
         android:src="@drawable/ic_remove_white_36dp"
-        android:visibility="visible"
         />
 
 </RelativeLayout>
