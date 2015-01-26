@@ -1,4 +1,5 @@
 package fr.ecp.sio.superchat.Adapters;
+
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,9 +11,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.util.List;
+
 import fr.ecp.sio.superchat.AccountManager;
 import fr.ecp.sio.superchat.ApiClient;
 import fr.ecp.sio.superchat.Fragments.FollowingFragment;
@@ -94,7 +98,7 @@ public class UsersAdapter extends BaseAdapter {
                 button_add.setVisibility(View.VISIBLE);
             }
         } else {
-            if(parent.getContext().getClass().equals(TabHostActivity.class)){
+            if (parent.getContext().getClass().equals(TabHostActivity.class)) {
                 button_add.setVisibility(View.GONE);
                 button_delete.setVisibility(View.VISIBLE);
 
@@ -167,11 +171,10 @@ public class UsersAdapter extends BaseAdapter {
 
                                 ((TabHostActivity) parent.getContext()).ListChanged();
 
-                            }else {
+                            } else {
                                 button_delete.setVisibility(View.GONE);
                                 button_add.setVisibility(View.VISIBLE);
                             }
-
                         } else {
                             Toast.makeText(parent.getContext(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show();
                         }

@@ -30,9 +30,11 @@ import fr.ecp.sio.superchat.model.User;
 public class FollowerAdapter extends BaseAdapter implements DialogInterface.OnShowListener {
 
     private List<User> mUsers;
+
     public List<User> getUsers() {
         return mUsers;
     }
+
     public void setUsers(List<User> users) {
         mUsers = users;
     }
