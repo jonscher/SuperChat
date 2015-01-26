@@ -174,6 +174,8 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
         }
     }
 
+    //Méthode qui permet de rafraichir le fragment.
+
     public void ListChanged() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof FollowingFragment)

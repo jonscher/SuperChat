@@ -72,6 +72,7 @@ public class MainActivity extends ActionBarActivity {
         }
         return true;
     }
+    //Méthode qui permet de rafraichir le fragment.
 
     public void ListChanged() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
@@ -82,6 +83,8 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
+
+    //Je reload le fragment lorsque je reviens dans MainActivity.
 
     @Override
     public void onResume() {
