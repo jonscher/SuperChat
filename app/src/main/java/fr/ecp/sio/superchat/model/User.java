@@ -27,7 +27,7 @@ public class User implements Parcelable {
     }
 
     public boolean isFollowing() {
-        Log.i(User.class.getName().toString(), following +" "+ getHandle() + "   isfollowing");
+        Log.i(User.class.getName().toString(), following + " " + getHandle() + "   isfollowing");
         return following;
     }
 

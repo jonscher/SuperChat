@@ -45,8 +45,8 @@ public class AccountManager {
                 .remove(PREF_API_HANDLE)
                 .apply();
 
-        }
     }
+}
 
 
 

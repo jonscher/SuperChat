@@ -100,9 +100,9 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
                         target.onActivityResult(getTargetRequestCode(), MainActivity.RESULT_OK, null);
                     }
                     dismiss();
-                    if (getActivity() instanceof MainActivity){
+                    if (getActivity() instanceof MainActivity) {
                         ((MainActivity) getActivity()).ListChanged();
-                    }else {
+                    } else {
                         ((TabHostActivity) getActivity()).ListChanged();
                     }
                     Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();

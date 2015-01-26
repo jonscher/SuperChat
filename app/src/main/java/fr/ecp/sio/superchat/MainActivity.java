@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-      public void ListChanged() {
+    public void ListChanged() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof UsersFragment)
                 ((UsersFragment) fragment).reloadList();
@@ -81,14 +81,14 @@ public class MainActivity extends ActionBarActivity {
                 ((UsersFragment) fragment).reloadList();
             }
         }
-    } @Override
-      public void onResume() {
+    }
+
+    @Override
+    public void onResume() {
         super.onResume();
-            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                if (fragment instanceof UsersFragment)
-                    ((UsersFragment) fragment).reloadList();
-            }
-
-
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof UsersFragment)
+                ((UsersFragment) fragment).reloadList();
+        }
     }
 }
