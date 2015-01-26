@@ -100,5 +100,4 @@ public class ApiClient {
         connection.setRequestProperty("Authorization", "Bearer-" + token);
         connection.getInputStream();
     }
-
 }

@@ -75,4 +75,5 @@ public class FollowerFragment extends ListFragment implements LoaderManager.Load
     @Override
     public void onLoaderReset(Loader<List<User>> loader) {
     }
+
 }

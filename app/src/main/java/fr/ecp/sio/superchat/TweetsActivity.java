@@ -29,20 +29,4 @@ public class TweetsActivity extends ActionBarActivity {
                     .commit();
         }
     }
-
-    public void button_follower(View view) {
-
-        FOLLOW_ACTIVITY = 0;
-        Intent intent1 = new Intent(this, FollowActivity.class);
-        intent1.putExtras(getIntent().getExtras());
-        startActivity(intent1);
-    }
-
-    public void button_following(View view) {
-
-        FOLLOW_ACTIVITY = 1;
-        Intent intent2 = new Intent(this, FollowActivity.class);
-        intent2.putExtras(getIntent().getExtras());
-        startActivity(intent2);
-    }
 }

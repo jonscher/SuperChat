@@ -58,7 +58,6 @@ public class PostActivity extends ActionBarActivity {
                     Toast.makeText(PostActivity.this, R.string.post_error, Toast.LENGTH_SHORT).show();
                 }
             }
-
         }.execute(content);
     }
 

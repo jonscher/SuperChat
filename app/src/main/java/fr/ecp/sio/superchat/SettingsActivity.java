@@ -17,7 +17,6 @@ public class SettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
-
         Preference logoutPref = findPreference("logout");
         logoutPref.setEnabled(AccountManager.isConnected(this));
         logoutPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

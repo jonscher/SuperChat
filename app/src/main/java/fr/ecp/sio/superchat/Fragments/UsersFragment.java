@@ -135,4 +135,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
             isConnected = AccountManager.isConnected(getActivity());
         }
     }
+    public void reloadList() {
+        getLoaderManager().restartLoader(0, null, this);
+    }
 }

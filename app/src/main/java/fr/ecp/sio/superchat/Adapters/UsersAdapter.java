@@ -83,7 +83,7 @@ public class UsersAdapter extends BaseAdapter {
         final ImageButton button_delete = (ImageButton) convertView.findViewById(R.id.rem_following);
         final ImageButton button_add = (ImageButton) convertView.findViewById(R.id.add_following);
 
-
+// J'afiche les boutons dans certaines conditions
         if ((AccountManager.isConnected(parent.getContext()) && !user.getHandle().equals(AccountManager.getUserHandle(parent.getContext())) && parent.getContext().getClass().equals(MainActivity.class)) || ((AccountManager.isConnected(parent.getContext()) && parent.getContext().getClass().equals(TabHostActivity.class) && !user.getHandle().equals(AccountManager.getUserHandle(parent.getContext())) &&
                 TweetsFragment.mUser.getHandle().equals(AccountManager.getUserHandle(parent.getContext()))))) {
             if (user.isFollowing()) {
@@ -94,10 +94,18 @@ public class UsersAdapter extends BaseAdapter {
                 button_add.setVisibility(View.VISIBLE);
             }
         } else {
+            if(parent.getContext().getClass().equals(TabHostActivity.class)){
+                button_add.setVisibility(View.GONE);
+                button_delete.setVisibility(View.VISIBLE);
+
+            }
             button_add.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
         }
 
+
+// Au moment du clic, des actions sont réalisées: Connection à l'API, Message de confirmation ou d'erreur,
+// actualisation de la liste si je suis dans TabHostActivity.
 
         button_add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -152,15 +160,18 @@ public class UsersAdapter extends BaseAdapter {
                     @Override
                     protected void onPostExecute(Integer success) {
                         if (success == 1) {
+
                             Toast.makeText(parent.getContext(), "Vous ne suivez plus " + user.getHandle(), Toast.LENGTH_SHORT).show();
-                            button_delete.setVisibility(View.GONE);
-                            button_add.setVisibility(View.VISIBLE);
                             user.setFollowing(false);
                             if (parent.getContext() instanceof TabHostActivity) {
-                                Fragment followingFragment = new FollowingFragment();
-                                followingFragment.setArguments(FollowingFragment.newArgument(TweetsFragment.mUser));
-                                ((MainActivity)(parent.getContext())).getSupportFragmentManager().beginTransaction().replace(R.id.content, followingFragment).commit();
+
+                                ((TabHostActivity) parent.getContext()).ListChanged();
+
+                            }else {
+                                button_delete.setVisibility(View.GONE);
+                                button_add.setVisibility(View.VISIBLE);
                             }
+
                         } else {
                             Toast.makeText(parent.getContext(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show();
                         }

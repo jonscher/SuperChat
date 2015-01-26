@@ -9,7 +9,7 @@ import android.view.View;
 
 import java.util.List;
 
-import fr.ecp.sio.superchat.Adapters.UsersAdapterBis;
+import fr.ecp.sio.superchat.Adapters.UsersAdapter;
 import fr.ecp.sio.superchat.loaders.FollowingsLoader;
 import fr.ecp.sio.superchat.model.User;
 import fr.ecp.sio.superchat.TabHostActivity;
@@ -22,7 +22,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     private static final int LOADER_FOLLOWINGS = 1080;
     private static final String ARG_USER = "user";
     private User mUser;
-    public static UsersAdapterBis mListAdapter;
+    public static UsersAdapter mListAdapter;
 
     public static Bundle newArgument(User user) {
         Bundle args = new Bundle();
@@ -39,7 +39,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapterBis();
+        mListAdapter = new UsersAdapter();
         getListView().setDividerHeight(0);
     }
 
@@ -71,5 +71,9 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
 
     @Override
     public void onLoaderReset(Loader<List<User>> loader) {
+    }
+
+    public void reloadList() {
+        getLoaderManager().restartLoader(0, null, this);
     }
 }

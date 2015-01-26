@@ -165,31 +165,24 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
         mTabHost.setOnTabChangedListener(this);
     }
 
-    public void lanchActivity() {
-        Fragment followFragment = new UsersFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.test, followFragment)
-                .commit();
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOGIN_FOR_POST) {
 
-
             Log.i(this.getClass().getName().toString(), "je suis ds TABHOST");
-            //        getListView().invalidate();
         }
     }
 
+
     public void ListChanged() {
 
-        this.finish();
-
-        Intent intent = new Intent(this, TabHostActivity.class);
-        intent.putExtras(TweetsFragment.newArguments(TweetsFragment.mUser));
-        startActivity(intent);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof FollowingFragment)
+                ((FollowingFragment) fragment).reloadList();
+        }
     }
-}
+
+
+    }
+

@@ -51,8 +51,6 @@ public class TweetsLoader extends AsyncTaskLoader<List<Tweet>> {
 
     @Override
     public void deliverResult(List<Tweet> data) {
-        Log.i(TweetsLoader.class.getName(), "data: " + data);
-        Log.i(TweetsLoader.class.getName(), "ca marche bien");
         mResult = data;
         super.deliverResult(data);
     }

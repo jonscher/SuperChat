@@ -30,7 +30,6 @@ public class UsersLoader extends AsyncTaskLoader<List<User>> {
 
             } else {
                 return new ApiClient().getUsers();
-
             }
         } catch (IOException e) {
             Log.e(UsersLoader.class.getName(), "Failed to download users", e);
@@ -58,8 +57,6 @@ public class UsersLoader extends AsyncTaskLoader<List<User>> {
     @Override
     public void deliverResult(List<User> data) {
         mResult = data;
-        Log.i(UsersLoader.class.getName(), "data Userloaders: " + data);
-
         super.deliverResult(data);
     }
 

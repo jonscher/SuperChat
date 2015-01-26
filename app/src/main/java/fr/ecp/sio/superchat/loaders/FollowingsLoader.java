@@ -56,7 +56,6 @@ public class FollowingsLoader extends AsyncTaskLoader<List<User>> {
         Log.i(FollowingsLoader.class.getName(), "ca marche3");
         mResult = data;
         super.deliverResult(data);
-
     }
 }
 

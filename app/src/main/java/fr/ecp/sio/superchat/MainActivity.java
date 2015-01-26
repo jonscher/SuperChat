@@ -9,7 +9,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import fr.ecp.sio.superchat.Fragments.FollowingFragment;
 import fr.ecp.sio.superchat.Fragments.LoginFragment;
+import fr.ecp.sio.superchat.Fragments.TweetsFragment;
 import fr.ecp.sio.superchat.Fragments.UsersFragment;
 
 //pour se connecter à Jerome ds l'appli: user:Jerome et mdp:test
@@ -49,7 +51,6 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
 
-
         if (id == R.id.menu_connexion) {
             android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
             LoginFragment editNameDialog = new LoginFragment();
@@ -71,12 +72,23 @@ public class MainActivity extends ActionBarActivity {
         }
         return true;
     }
-    public void ListChanged() {
-            Fragment usersfragments = new UsersFragment();
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_content, usersfragments)
-                    .commit();
+
+      public void ListChanged() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            if (fragment instanceof UsersFragment)
+                ((UsersFragment) fragment).reloadList();
+            else {
+                ((UsersFragment) fragment).reloadList();
+            }
+        }
+    } @Override
+      public void onResume() {
+        super.onResume();
+            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                if (fragment instanceof UsersFragment)
+                    ((UsersFragment) fragment).reloadList();
+            }
+
 
     }
 }

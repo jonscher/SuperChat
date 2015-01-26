@@ -63,5 +63,4 @@ public class TweetsAdapter extends BaseAdapter {
     public boolean isEnabled(int position) {
         return false;
     }
-
 }

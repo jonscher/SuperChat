@@ -25,9 +25,6 @@
       />
 
 
-        <activity android:name=".FollowActivity"
-            android:label="Following"
-            />
         <activity android:name=".PostActivity"
                 android:theme="@style/AppTheme.DialogWhenLarge" />
         <activity android:name=".SettingsActivity"

@@ -3,7 +3,6 @@ package fr.ecp.sio.superchat.Fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,7 +18,6 @@ import java.io.IOException;
 
 import fr.ecp.sio.superchat.AccountManager;
 import fr.ecp.sio.superchat.ApiClient;
-import fr.ecp.sio.superchat.FollowActivity;
 import fr.ecp.sio.superchat.MainActivity;
 import fr.ecp.sio.superchat.R;
 import fr.ecp.sio.superchat.TabHostActivity;
@@ -99,16 +97,14 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
 
                     Fragment target = getTargetFragment();
                     if (target != null) {
-                        target.onActivityResult(getTargetRequestCode(), FollowActivity.RESULT_OK, null);
+                        target.onActivityResult(getTargetRequestCode(), MainActivity.RESULT_OK, null);
                     }
                     dismiss();
                     if (getActivity() instanceof MainActivity){
                         ((MainActivity) getActivity()).ListChanged();
                     }else {
-
                         ((TabHostActivity) getActivity()).ListChanged();
                     }
-
                     Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getActivity(), R.string.login_error, Toast.LENGTH_SHORT).show();
