@@ -3,17 +3,4 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/content">
-
-    <FrameLayout
-        android:id="@+id/tweets_following"
-        android:layout_weight="1.5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <FrameLayout
-        android:id="@+id/tweets_follower"
-        android:layout_weight="1.5"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
 </LinearLayout>

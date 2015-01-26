@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +21,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.List;
 
+import fr.ecp.sio.superchat.R;
 import fr.ecp.sio.superchat.model.User;
 
 /**
@@ -71,8 +72,7 @@ public class FollowerAdapter extends BaseAdapter implements DialogInterface.OnSh
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        if (convertView == null)
-        {
+        if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.follow_item, parent, false);
         }
         final User user = getItem(position);

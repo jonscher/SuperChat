@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.R;
 import fr.ecp.sio.superchat.model.Tweet;
 
 /**

@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 
+import fr.ecp.sio.superchat.Fragments.FollowingFragment;
+import fr.ecp.sio.superchat.R;
+
 /**
  * Created by jonathan on 03/01/2015.
  */
@@ -22,7 +25,6 @@ public class FollowActivity extends ActionBarActivity {
                     .beginTransaction()
                     .add(R.id.content, followFragment)
                     .commit();
-
         }
     }
 }

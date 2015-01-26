@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +9,10 @@ import android.view.View;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.Adapters.FollowerAdapter;
 import fr.ecp.sio.superchat.loaders.FollowersLoader;
 import fr.ecp.sio.superchat.model.User;
-import fr.ecp.sio.superchat.tabHost.TabHostActivity;
+import fr.ecp.sio.superchat.TabHostActivity;
 
 /**
  * Created by jonathan on 04/01/2015.
@@ -58,6 +59,7 @@ public class FollowerFragment extends ListFragment implements LoaderManager.Load
         super.onStart();
         getLoaderManager().initLoader(LOADER_FOLLOWINGS, null, this);
     }
+
 
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {

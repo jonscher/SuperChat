@@ -1,16 +1,16 @@
 package fr.ecp.sio.superchat;
 
 import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import fr.ecp.sio.superchat.Fragments.LoginFragment;
+import fr.ecp.sio.superchat.Fragments.UsersFragment;
 
 //pour se connecter à Jerome ds l'appli: user:Jerome et mdp:test
 public class MainActivity extends ActionBarActivity {
@@ -49,11 +49,7 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
 
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
-            return true;
 
-        }
         if (id == R.id.menu_connexion) {
             android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
             LoginFragment editNameDialog = new LoginFragment();
@@ -81,5 +77,6 @@ public class MainActivity extends ActionBarActivity {
                     .beginTransaction()
                     .replace(R.id.main_content, usersfragments)
                     .commit();
+
     }
 }

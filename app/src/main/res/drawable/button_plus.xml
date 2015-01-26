@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_pressed="true">
         <shape android:shape="oval">
-            <size android:height="24dp" android:width="24dp" />
+            <size android:height="30dp" android:width="30dp" />
             <corners android:radius="4dp" />
 
             <solid android:color="@color/super_chat_dark" />
@@ -10,7 +10,7 @@
     </item>
     <item>
         <shape android:shape="rectangle">
-            <size android:height="24dp" android:width="24dp" />
+            <size android:height="30dp" android:width="30dp" />
             <corners android:radius="4dp" />
 
             <solid android:color="@color/super_chat" />

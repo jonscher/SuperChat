@@ -3,7 +3,6 @@ package fr.ecp.sio.superchat;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 

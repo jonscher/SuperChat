@@ -1,6 +1,5 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -11,6 +10,8 @@ import android.view.View;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.Adapters.TweetsAdapter;
+import fr.ecp.sio.superchat.TweetsActivity;
 import fr.ecp.sio.superchat.loaders.TweetsLoader;
 import fr.ecp.sio.superchat.model.Tweet;
 import fr.ecp.sio.superchat.model.User;
@@ -21,19 +22,13 @@ import fr.ecp.sio.superchat.model.User;
 public class TweetsFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<Tweet>> {
 
     private static final int LOADER_TWEETS = 1000;
-
     public static final String ARG_USER = "user";
-
-    private static final int REQUEST_LOGIN_FOR_FOLLOW = 3;
-
     public static User mUser;
     private TweetsAdapter mListAdapter;
 
     public static Bundle newArguments(User user) {
         Bundle args = new Bundle();
         args.putParcelable(ARG_USER, user);
-        Log.i(TweetsFragment.class.getName(), "user: " + ARG_USER);
-
         return args;
     }
 
@@ -42,32 +37,15 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
         super.onCreate(savedInstanceState);
         Log.i(TweetsFragment.class.getName(), "user ARG: " + ARG_USER);
         mUser = getArguments().getParcelable(ARG_USER);
-
     }
 
-    /*  private void follower_button() {
-          if (AccountManager.isConnected(getActivity())) {
-              startActivity(new Intent(getActivity(), FollowerActivity.class));
-          } else {
-              LoginFragment fragment = new LoginFragment();
-              fragment.setTargetFragment(this, REQUEST_LOGIN_FOR_FOLLOW);
-              fragment.show(getFragmentManager(), "login_dialog");
-          }
-      }*/
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mListAdapter = new TweetsAdapter();
         getListView().setDividerHeight(0);
         getActivity().setTitle(mUser.getHandle());
-
-
-       /* view.findViewById(R.id.button_following).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                follower_button();
-            }
-        });*/
     }
 
     @Override
@@ -75,7 +53,6 @@ public class TweetsFragment extends ListFragment implements LoaderManager.Loader
         super.onActivityCreated(savedInstanceState);
         if (getActivity() instanceof TweetsActivity) {
             getActivity().setTitle(mUser.getHandle());
-
         }
     }
 

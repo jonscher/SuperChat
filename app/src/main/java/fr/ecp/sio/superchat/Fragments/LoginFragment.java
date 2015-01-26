@@ -1,8 +1,9 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
+
+import fr.ecp.sio.superchat.AccountManager;
+import fr.ecp.sio.superchat.ApiClient;
+import fr.ecp.sio.superchat.FollowActivity;
+import fr.ecp.sio.superchat.MainActivity;
+import fr.ecp.sio.superchat.R;
+import fr.ecp.sio.superchat.TabHostActivity;
 
 /**
  * Created by Michaël on 12/12/2014.
@@ -92,10 +100,14 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
                     Fragment target = getTargetFragment();
                     if (target != null) {
                         target.onActivityResult(getTargetRequestCode(), FollowActivity.RESULT_OK, null);
-                        Log.i(getActivity().getClass().getName(), "c l'activité");
                     }
                     dismiss();
-                    ((MainActivity) getActivity()).ListChanged();
+                    if (getActivity() instanceof MainActivity){
+                        ((MainActivity) getActivity()).ListChanged();
+                    }else {
+
+                        ((TabHostActivity) getActivity()).ListChanged();
+                    }
 
                     Toast.makeText(getActivity(), R.string.login_success, Toast.LENGTH_SHORT).show();
                 } else {

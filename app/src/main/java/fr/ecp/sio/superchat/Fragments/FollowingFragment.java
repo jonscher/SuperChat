@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +9,10 @@ import android.view.View;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.Adapters.UsersAdapterBis;
 import fr.ecp.sio.superchat.loaders.FollowingsLoader;
 import fr.ecp.sio.superchat.model.User;
-import fr.ecp.sio.superchat.tabHost.TabHostActivity;
+import fr.ecp.sio.superchat.TabHostActivity;
 
 /**
  * Created by jonathan on 04/01/2015.
@@ -19,12 +20,9 @@ import fr.ecp.sio.superchat.tabHost.TabHostActivity;
 public class FollowingFragment extends ListFragment implements LoaderManager.LoaderCallbacks<List<User>> {
 
     private static final int LOADER_FOLLOWINGS = 1080;
-
     private static final String ARG_USER = "user";
-
     private User mUser;
-
-    public static UsersAdapter mListAdapter;
+    public static UsersAdapterBis mListAdapter;
 
     public static Bundle newArgument(User user) {
         Bundle args = new Bundle();
@@ -41,7 +39,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapter();
+        mListAdapter = new UsersAdapterBis();
         getListView().setDividerHeight(0);
     }
 
@@ -58,7 +56,6 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
         super.onStart();
         getLoaderManager().initLoader(LOADER_FOLLOWINGS, null, this);
     }
-
 
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {

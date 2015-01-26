@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat;
+package fr.ecp.sio.superchat.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,14 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.AccountManager;
+import fr.ecp.sio.superchat.PostActivity;
+import fr.ecp.sio.superchat.Adapters.UsersAdapter;
+import fr.ecp.sio.superchat.MainActivity;
+import fr.ecp.sio.superchat.R;
 import fr.ecp.sio.superchat.loaders.UsersLoader;
 import fr.ecp.sio.superchat.model.User;
-import fr.ecp.sio.superchat.tabHost.TabHostActivity;
+import fr.ecp.sio.superchat.TabHostActivity;
 
 /**
  * Created by Michaël on 05/12/2014.
@@ -37,7 +42,6 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         isConnected = AccountManager.isConnected(getActivity());
         return inflater.inflate(R.layout.users_fragment, container, false);
-
     }
 
     @Override
@@ -66,19 +70,16 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     public void onStart() {
         super.onStart();
         getLoaderManager().initLoader(LOADER_USERS, null, this);
-        Log.i(UsersFragment.class.getName(), "ok1");
     }
 
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {
-        Log.i(UsersFragment.class.getName(), "ok2");
         return new UsersLoader(getActivity());
     }
 
     @Override
     public void onLoadFinished(Loader<List<User>> loader, List<User> users) {
         mListAdapter.setUsers(users);
-        Log.i(UsersFragment.class.getName(), "ok3");
     }
 
     @Override
@@ -115,7 +116,6 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
             LoginFragment fragment = new LoginFragment();
             fragment.setTargetFragment(this, REQUEST_LOGIN_FOR_POST);
             fragment.show(getFragmentManager(), "login_dialog");
-            Log.i(getActivity().getClass().getName().toString(), "je suis ds cette act1");
         }
     }
 
@@ -124,20 +124,14 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOGIN_FOR_POST && resultCode == PostActivity.RESULT_OK) {
             ((MainActivity) getActivity()).ListChanged();
-
             post();
-
-            //  startActivity(new Intent(getActivity(), PostActivity.class));
-
-
-            //        getListView().invalidate();
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(AccountManager.isConnected(getActivity()) != isConnected){
+        if (AccountManager.isConnected(getActivity()) != isConnected) {
             isConnected = AccountManager.isConnected(getActivity());
         }
     }

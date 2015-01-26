@@ -4,14 +4,7 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 
 import fr.ecp.sio.superchat.AccountManager;

@@ -44,9 +44,8 @@ public class AccountManager {
                 .remove(PREF_API_TOKEN)
                 .remove(PREF_API_HANDLE)
                 .apply();
+
         }
-
-
     }
 
 

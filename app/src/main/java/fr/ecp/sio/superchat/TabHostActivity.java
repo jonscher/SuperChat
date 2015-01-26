@@ -1,4 +1,4 @@
-package fr.ecp.sio.superchat.tabHost;
+package fr.ecp.sio.superchat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,13 @@ import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 
-import fr.ecp.sio.superchat.AccountManager;
-import fr.ecp.sio.superchat.FollowerFragment;
-import fr.ecp.sio.superchat.FollowingFragment;
-import fr.ecp.sio.superchat.LoginFragment;
-import fr.ecp.sio.superchat.R;
-import fr.ecp.sio.superchat.SettingsActivity;
-import fr.ecp.sio.superchat.TweetsFragment;
-import fr.ecp.sio.superchat.UsersFragment;
+import fr.ecp.sio.superchat.Fragments.FollowerFragment;
+import fr.ecp.sio.superchat.Fragments.FollowingFragment;
+import fr.ecp.sio.superchat.Fragments.LoginFragment;
+import fr.ecp.sio.superchat.Fragments.TweetsFragment;
+import fr.ecp.sio.superchat.Fragments.UsersFragment;
+import fr.ecp.sio.superchat.tabHost.MyPageAdapter;
+import fr.ecp.sio.superchat.tabHost.MyTabFactory;
 
 public class TabHostActivity extends ActionBarActivity implements OnTabChangeListener, OnPageChangeListener {
 
@@ -83,16 +82,10 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
 
         //noinspection SimplifiableIfStatement
 
-
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        }
-
-        if (id == R.id.menu_connection) {
+        if (id == R.id.menu_connexion) {
             android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-            LoginFragment fragment = new LoginFragment();
-            fragment.show(fm, "fragment_edit_name");
+            LoginFragment editNameDialog = new LoginFragment();
+            editNameDialog.show(fm, "fragment_edit_name");
         }
 
         if (id == R.id.menu_disconnect) {
@@ -103,6 +96,7 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             AccountManager.logout(TabHostActivity.this);
+                            ListChanged();
                         }
                     })
                     .setNegativeButton(android.R.string.no, null)
@@ -191,10 +185,11 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
     }
 
     public void ListChanged() {
-        Fragment followfragments = new FollowingFragment();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.content, followfragments)
-                .commit();
+
+        this.finish();
+
+        Intent intent = new Intent(this, TabHostActivity.class);
+        intent.putExtras(TweetsFragment.newArguments(TweetsFragment.mUser));
+        startActivity(intent);
     }
 }

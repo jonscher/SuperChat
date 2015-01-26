@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
+import fr.ecp.sio.superchat.Fragments.TweetsFragment;
+
 /**
  * Created by Michaël on 05/12/2014.
  */

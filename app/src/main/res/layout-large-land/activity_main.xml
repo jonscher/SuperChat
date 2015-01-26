@@ -11,7 +11,7 @@
 
     <fragment
 
-            class="fr.ecp.sio.superchat.UsersFragment"
+            class="fr.ecp.sio.superchat.Fragments.UsersFragment"
             android:id="@+id/users_list"
             android:layout_width="255dp"
             android:layout_height="match_parent"
