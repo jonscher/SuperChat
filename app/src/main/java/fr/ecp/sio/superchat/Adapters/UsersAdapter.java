@@ -163,13 +163,12 @@ public class UsersAdapter extends BaseAdapter {
                     @Override
                     protected void onPostExecute(Integer success) {
                         if (success == 1) {
-
                             Toast.makeText(parent.getContext(), "Vous ne suivez plus " + user.getHandle(), Toast.LENGTH_SHORT).show();
                             user.setFollowing(false);
                             if (parent.getContext() instanceof TabHostActivity) {
-
                                 ((TabHostActivity) parent.getContext()).ListChanged();
-
+                                button_add.setVisibility(View.GONE);
+                                button_delete.setVisibility(View.VISIBLE);
                             } else {
                                 button_delete.setVisibility(View.GONE);
                                 button_add.setVisibility(View.VISIBLE);
