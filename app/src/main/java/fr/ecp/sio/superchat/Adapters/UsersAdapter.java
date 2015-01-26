@@ -167,9 +167,7 @@ public class UsersAdapter extends BaseAdapter {
                             user.setFollowing(false);
                             if (parent.getContext() instanceof TabHostActivity) {
                                 ((TabHostActivity) parent.getContext()).ListChanged();
-                                button_add.setVisibility(View.GONE);
-                                button_delete.setVisibility(View.VISIBLE);
-                            } else {
+                             } else {
                                 button_delete.setVisibility(View.GONE);
                                 button_add.setVisibility(View.VISIBLE);
                             }
