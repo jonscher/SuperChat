@@ -13,8 +13,6 @@ import fr.ecp.sio.superchat.Fragments.TweetsFragment;
  */
 public class TweetsActivity extends ActionBarActivity {
 
-    public static int FOLLOW_ACTIVITY;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
