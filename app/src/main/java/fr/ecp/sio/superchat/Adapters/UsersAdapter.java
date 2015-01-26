@@ -101,7 +101,6 @@ public class UsersAdapter extends BaseAdapter {
             if (parent.getContext().getClass().equals(TabHostActivity.class)) {
                 button_add.setVisibility(View.GONE);
                 button_delete.setVisibility(View.VISIBLE);
-
             }
             button_add.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
