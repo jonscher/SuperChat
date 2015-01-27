@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 
@@ -22,6 +23,7 @@ import fr.ecp.sio.superchat.Fragments.FollowingFragment;
 import fr.ecp.sio.superchat.Fragments.LoginFragment;
 import fr.ecp.sio.superchat.Fragments.TweetsFragment;
 import fr.ecp.sio.superchat.Fragments.UsersFragment;
+import fr.ecp.sio.superchat.model.User;
 import fr.ecp.sio.superchat.tabHost.MyPageAdapter;
 import fr.ecp.sio.superchat.tabHost.MyTabFactory;
 
@@ -31,6 +33,17 @@ public class TabHostActivity extends ActionBarActivity implements OnTabChangeLis
     private ViewPager mViewPager;
     private TabHost mTabHost;
     private static final int REQUEST_LOGIN_FOR_POST = 1;
+
+    public static List<User> getmUsers() {
+        return mUsers;
+    }
+
+    public static void setmUsers(List<User> mUsers) {
+        TabHostActivity.mUsers = mUsers;
+    }
+
+    private static List<User> mUsers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

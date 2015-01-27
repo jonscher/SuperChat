@@ -1,5 +1,6 @@
 package fr.ecp.sio.superchat.Adapters;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -33,7 +34,7 @@ import fr.ecp.sio.superchat.model.User;
  */
 public class UsersAdapter extends BaseAdapter {
 
-    private List<User> mUsers;
+    private static List<User> mUsers;
 
     public List<User> getUsers() {
         return mUsers;
@@ -42,6 +43,7 @@ public class UsersAdapter extends BaseAdapter {
     public void setUsers(List<User> users) {
         mUsers = users;
         notifyDataSetChanged();
+        TabHostActivity.setmUsers(mUsers);
     }
 
     @Override
@@ -51,6 +53,9 @@ public class UsersAdapter extends BaseAdapter {
 
     @Override
     public User getItem(int position) {
+        if (mUsers== null){
+            return TabHostActivity.getmUsers().get(position);
+        }else
         return mUsers.get(position);
     }
 
