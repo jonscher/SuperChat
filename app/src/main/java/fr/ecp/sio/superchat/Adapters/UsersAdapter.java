@@ -66,7 +66,6 @@ public class UsersAdapter extends BaseAdapter {
         } else {
             return getItem(position).getId().hashCode();
         }
-
     }
 
     @Override
