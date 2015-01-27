@@ -76,10 +76,15 @@ public class MainActivity extends ActionBarActivity {
 
     public void ListChanged() {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+
+
             if (fragment instanceof UsersFragment)
                 ((UsersFragment) fragment).reloadList();
+            if (fragment instanceof FollowingFragment){
+                ((FollowingFragment) fragment).reloadList();
+            }
             else {
-                ((UsersFragment) fragment).reloadList();
+
             }
         }
     }
@@ -92,6 +97,7 @@ public class MainActivity extends ActionBarActivity {
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             if (fragment instanceof UsersFragment)
                 ((UsersFragment) fragment).reloadList();
+
         }
     }
 }

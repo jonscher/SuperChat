@@ -34,7 +34,7 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
     private static final int REQUEST_LOGIN_FOR_POST = 1;
     public static User user;
     private UsersAdapter mListAdapter;
-    private boolean mIsMasterDetailsMode;
+    public static boolean mIsMasterDetailsMode;
 
     private boolean isConnected;
 
@@ -91,14 +91,16 @@ public class UsersFragment extends ListFragment implements LoaderManager.LoaderC
         user = mListAdapter.getItem(position);
         if (mIsMasterDetailsMode) {
             Fragment tweetsFragment = new TweetsFragment();
-            Fragment followFragment = new FollowingFragment();
-            Log.i(UsersFragment.class.getName(), "user: " + user);
+            Fragment followingFragment = new FollowingFragment();
+            Fragment followerFragment = new FollowerFragment();
             tweetsFragment.setArguments(TweetsFragment.newArguments(user));
-            followFragment.setArguments(FollowingFragment.newArgument(user));
+            followerFragment.setArguments(FollowerFragment.newArgument(user));
+            followingFragment.setArguments(FollowingFragment.newArgument(user));
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.tweets_content, tweetsFragment)
-                    .replace(R.id.tweets_follower, followFragment)
+                    .replace(R.id.tweets_follower, followerFragment)
+                    .replace(R.id.tweets_following, followingFragment)
                     .commit();
         } else {
 

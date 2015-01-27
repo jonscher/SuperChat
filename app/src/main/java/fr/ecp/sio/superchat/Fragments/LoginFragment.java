@@ -91,10 +91,8 @@ public class LoginFragment extends DialogFragment implements DialogInterface.OnS
 
             @Override
             protected void onPostExecute(String token) {
-
                 if (token != null) {
                     AccountManager.login(getActivity(), token, handle);
-
                     Fragment target = getTargetFragment();
                     if (target != null) {
                         target.onActivityResult(getTargetRequestCode(), MainActivity.RESULT_OK, null);

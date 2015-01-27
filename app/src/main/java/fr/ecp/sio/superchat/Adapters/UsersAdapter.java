@@ -21,6 +21,7 @@ import fr.ecp.sio.superchat.AccountManager;
 import fr.ecp.sio.superchat.ApiClient;
 import fr.ecp.sio.superchat.Fragments.FollowingFragment;
 import fr.ecp.sio.superchat.Fragments.TweetsFragment;
+import fr.ecp.sio.superchat.Fragments.UsersFragment;
 import fr.ecp.sio.superchat.MainActivity;
 import fr.ecp.sio.superchat.PostActivity;
 import fr.ecp.sio.superchat.R;
@@ -55,7 +56,11 @@ public class UsersAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return getItem(position).getId().hashCode();
+        if (getItem(position).getId() == null) {
+            return 0;
+        } else {
+            return getItem(position).getId().hashCode();
+        }
     }
 
     @Override
@@ -106,7 +111,6 @@ public class UsersAdapter extends BaseAdapter {
             button_delete.setVisibility(View.GONE);
         }
 
-
 // Au moment du clic, des actions sont réalisées: Connection à l'API, Message de confirmation ou d'erreur,
 // actualisation de la liste si je suis dans TabHostActivity.
 
@@ -134,6 +138,9 @@ public class UsersAdapter extends BaseAdapter {
                             button_add.setVisibility(View.GONE);
                             button_delete.setVisibility(View.VISIBLE);
                             user.setFollowing(true);
+                            if (parent.getContext() instanceof MainActivity && UsersFragment.mIsMasterDetailsMode) {
+                                ((MainActivity) parent.getContext()).ListChanged();
+                            }
                         } else {
                             Toast.makeText(parent.getContext(), "Une erreur s'est produite", Toast.LENGTH_SHORT).show();
                         }
@@ -167,7 +174,9 @@ public class UsersAdapter extends BaseAdapter {
                             user.setFollowing(false);
                             if (parent.getContext() instanceof TabHostActivity) {
                                 ((TabHostActivity) parent.getContext()).ListChanged();
-                             } else {
+                            } else if (parent.getContext() instanceof MainActivity && UsersFragment.mIsMasterDetailsMode) {
+                                ((MainActivity) parent.getContext()).ListChanged();
+                            } else {
                                 button_delete.setVisibility(View.GONE);
                                 button_add.setVisibility(View.VISIBLE);
                             }

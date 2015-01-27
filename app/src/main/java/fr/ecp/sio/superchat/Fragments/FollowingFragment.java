@@ -9,7 +9,9 @@ import android.view.View;
 
 import java.util.List;
 
+import fr.ecp.sio.superchat.Adapters.FollowerAdapter;
 import fr.ecp.sio.superchat.Adapters.UsersAdapter;
+import fr.ecp.sio.superchat.MainActivity;
 import fr.ecp.sio.superchat.loaders.FollowingsLoader;
 import fr.ecp.sio.superchat.model.User;
 import fr.ecp.sio.superchat.TabHostActivity;
@@ -23,6 +25,8 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     private static final String ARG_USER = "user";
     private User mUser;
     public static UsersAdapter mListAdapter;
+    public static FollowerAdapter mListAdapterbis;
+
 
     public static Bundle newArgument(User user) {
         Bundle args = new Bundle();
@@ -39,7 +43,12 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mListAdapter = new UsersAdapter();
+        if (!UsersFragment.mIsMasterDetailsMode) {
+            mListAdapter = new UsersAdapter();
+        }
+        else {
+            mListAdapterbis = new FollowerAdapter();
+        }
         getListView().setDividerHeight(0);
     }
 
@@ -59,14 +68,27 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
 
     @Override
     public Loader<List<User>> onCreateLoader(int id, Bundle args) {
-        mListAdapter.notifyDataSetChanged();
+        if (!UsersFragment.mIsMasterDetailsMode) {
+            mListAdapter.notifyDataSetChanged();
+        }
+        else {
+            mListAdapterbis.notifyDataSetChanged();
+        }
         return new FollowingsLoader(getActivity(), mUser.getHandle());
     }
 
     @Override
     public void onLoadFinished(Loader<List<User>> loader, List<User> follow) {
-        mListAdapter.setUsers(follow);
-        setListAdapter(mListAdapter);
+        if (!UsersFragment.mIsMasterDetailsMode) {
+            mListAdapter.setUsers(follow);
+            setListAdapter(mListAdapter);
+
+        }
+        else {
+            mListAdapterbis.setUsers(follow);
+            setListAdapter(mListAdapterbis);
+
+        }
     }
 
     @Override
