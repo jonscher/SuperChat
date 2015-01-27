@@ -53,10 +53,11 @@ public class UsersAdapter extends BaseAdapter {
 
     @Override
     public User getItem(int position) {
-        if (mUsers== null){
-            return TabHostActivity.getmUsers().get(position);
-        }else
-        return mUsers.get(position);
+        if (mUsers == null) {
+            return null;
+        } else {
+            return mUsers.get(position);
+        }
     }
 
     @Override
