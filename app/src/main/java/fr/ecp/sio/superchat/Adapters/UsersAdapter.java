@@ -56,12 +56,9 @@ public class UsersAdapter extends BaseAdapter {
         if (mUsers == null) {
             return TabHostActivity.getmUsers().get(position);
         } else if ( position >= mUsers.size()) {
-            Log.i("UsersAdapter", "position = " + position);
             return mUsers.get(mUsers.size() - 1);
         }
         else {
-            Log.i("UsersAdapter", "position2 = " + position);
-
             return mUsers.get(position);
         }
     }
