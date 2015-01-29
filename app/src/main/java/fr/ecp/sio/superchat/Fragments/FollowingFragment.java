@@ -11,7 +11,6 @@ import java.util.List;
 
 import fr.ecp.sio.superchat.Adapters.FollowerAdapter;
 import fr.ecp.sio.superchat.Adapters.UsersAdapter;
-import fr.ecp.sio.superchat.MainActivity;
 import fr.ecp.sio.superchat.loaders.FollowingsLoader;
 import fr.ecp.sio.superchat.model.User;
 import fr.ecp.sio.superchat.TabHostActivity;
@@ -25,7 +24,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
     private static final String ARG_USER = "user";
     private User mUser;
     public static UsersAdapter mListAdapter;
-    public static FollowerAdapter mListAdapterbis;
+    public static FollowerAdapter mListAdapterBis;
 
 
     public static Bundle newArgument(User user) {
@@ -47,7 +46,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
             mListAdapter = new UsersAdapter();
         }
         else {
-            mListAdapterbis = new FollowerAdapter();
+            mListAdapterBis = new FollowerAdapter();
         }
         getListView().setDividerHeight(0);
     }
@@ -72,7 +71,7 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
             mListAdapter.notifyDataSetChanged();
         }
         else {
-            mListAdapterbis.notifyDataSetChanged();
+            mListAdapterBis.notifyDataSetChanged();
         }
         return new FollowingsLoader(getActivity(), mUser.getHandle());
     }
@@ -85,8 +84,8 @@ public class FollowingFragment extends ListFragment implements LoaderManager.Loa
 
         }
         else {
-            mListAdapterbis.setUsers(follow);
-            setListAdapter(mListAdapterbis);
+            mListAdapterBis.setUsers(follow);
+            setListAdapter(mListAdapterBis);
 
         }
     }
